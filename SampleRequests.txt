@@ -1,0 +1,65 @@
+Sample Requests
+------------------------------------------------------
+------------------------------------------------------
+
+Case 1: Add new Employee
+
+POST /v1/bfs/employees/ HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+accept: application/json
+idempotence-key: 123e4567-e89b-12d3-a456-426655440011
+
+
+{
+	"first_name" : "Vijayant",
+	"last_name": "Bhatia",
+	"date_of_birth": "08-01-1989",
+	"address": {
+		"line1": "816",
+		"line2": "Malka Ganj",
+		"city": "Delhi",
+		"state": "Delhi",
+		"country": "India",
+		"zip_code": "118007"
+	}
+}
+
+------------------------------------------------------
+Case 2:Add same employee without changing the idempotence-key
+
+It will return the previously added Employee and will not add a new employee
+
+------------------------------------------------------
+Case 3: Add employee with missing fields
+
+POST /v1/bfs/employees/ HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+accept: application/json
+idempotence-key: 123e4567-e89b-12d3-a456-426655440011
+
+
+{
+	"first_name" : "Vijayant",
+	"date_of_birth": "08-01-1989",
+	"address": {
+		"line1": "816",
+		"city": "Delhi",
+		"country": "India",
+		"zip_code": "118007"
+	}
+}
+
+Error message along with HTTP status will be returned
+
+------------------------------------------------------
+Case 4: Fetch the employee
+
+GET /v1/bfs/employees/1 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+accept: application/json
+
+Case 4.a: When employee is present it will return employee details
+Case 4.b: When employee with given id is not present then it will return error message with HTTP Status 404
