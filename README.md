@@ -35,3 +35,16 @@ We would like you to enhance the existing project and see you complete the follo
 
 ## Assignment submission
 Thank you very much for your time to take this test. Please upload this complete solution in Github and send us the link to `bfs-sor-interview@paypal.com`.
+
+## Candidate Comments
+- Added More fields to employee.json
+- Added Address.json and Error.json files
+- Added a new API to save employee
+- Updated the existing enpoint to return expected response
+- Added unit test cases
+- **Validation pending as of now: Will complete it today
+- Error Handling done for different error scenarios
+- Idempotency logic is impleted using In memory spring caching, hazelcast or other caching could also be used: Reason for using caching is to remove the idempotece-key after some time
+- **Posman collection addition is pending 
+
+
