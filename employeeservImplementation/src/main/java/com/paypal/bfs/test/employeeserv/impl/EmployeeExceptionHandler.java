@@ -3,12 +3,14 @@ package com.paypal.bfs.test.employeeserv.impl;
 import com.paypal.bfs.test.employeeserv.api.model.Error;
 import com.paypal.bfs.test.employeeserv.exception.DataNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -21,10 +23,16 @@ public class EmployeeExceptionHandler {
         return populateError(ex.getMessage(), NOT_FOUND);
     }
 
-    @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(BAD_REQUEST)
     public Error handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        return populateError(ex.getMessage(), BAD_REQUEST);
+        List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
+        StringBuilder sb = new StringBuilder("Validation failed. Error count: "+allErrors.size());
+        sb.append(":");
+        allErrors.forEach(error -> {
+            sb.append(error.getCodes()[1]).append(" :: ").append(error.getDefaultMessage()).append(", ");
+        });
+        return populateError(sb.substring(0, sb.lastIndexOf(",")), BAD_REQUEST);
     }
 
     @ExceptionHandler(RuntimeException.class)

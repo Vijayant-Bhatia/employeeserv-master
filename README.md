@@ -42,9 +42,9 @@ Thank you very much for your time to take this test. Please upload this complete
 - Added a new API to save employee
 - Updated the existing enpoint to return expected response
 - Added unit test cases
-- **Validation pending as of now: Will complete it today
+- Validation completed, could have done better but didn't got much time
 - Error Handling done for different error scenarios
 - Idempotency logic is impleted using In memory spring caching, hazelcast or other caching could also be used: Reason for using caching is to remove the idempotece-key after some time
-- **Posman collection addition is pending 
+- Added Sample requests in a file instead of postman collection
 
 
