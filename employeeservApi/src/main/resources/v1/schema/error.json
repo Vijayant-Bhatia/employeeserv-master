@@ -1,0 +1,23 @@
+{
+  "$id": "error",
+  "title": "Error",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "description": "timestamp",
+      "type": "date-time"
+    },
+    "status": {
+      "description": "HTTP Status",
+      "type": "integer"
+    },
+    "error": {
+      "description": "Status Description",
+      "type": "string"
+    },
+    "message": {
+      "description": "Error Message",
+      "type": "string"
+    }
+  }
+}
