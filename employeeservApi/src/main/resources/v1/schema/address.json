@@ -35,8 +35,7 @@
     "zip_code": {
       "description": "Zip Code",
       "type": "string",
-      "minLength": 6,
-      "maxLength": 6
+      "pattern": "^\\d{6}$"
     }
   },
   "required": [
